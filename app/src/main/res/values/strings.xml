@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">AnchorBooks</string>
+
+    <string name="id">Id</string>
+    <string name="author">Autor</string>
+    <string name="country">Pais</string>
+    <string name="Image">Imagen Producto</string>
+    <string name="languaje">Idioma</string>
+    <string name="title">Titulo</string>
+    
+    
+    
+    <string name="name">Nombre Producto</string>
+    <string name="price">Precio</string>
+    <string name="Descript">Descripcion</string>
+    <string name="lasprice">Precio Oferta</string>
+
+    <string name="Botton">Boton flotante</string>
 </resources>
+
