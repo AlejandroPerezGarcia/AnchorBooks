@@ -1,5 +1,6 @@
 package cl.alejandroperez.anchorbooks.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,10 @@ import androidx.fragment.app.activityViewModels
 import cl.alejandroperez.anchorbooks.R
 import cl.alejandroperez.anchorbooks.model.db.EntityBookDetail
 import cl.alejandroperez.anchorbooks.viewmodel.BookViewModel
+import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.android.synthetic.main.item_list.*
 
 
 private const val ARG_PARAM1 = "param1"
@@ -41,15 +46,7 @@ class DetailFragment : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Detail.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             DetailFragment().apply {
@@ -58,6 +55,53 @@ class DetailFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        bookViewModel.result.observe(viewLifecycleOwner,{
+
+            if (it != null) {
+                txtTitleBook.text = it.title
+                txtDetailLasPrice.text = it.lastPrice.toString()
+                txtDetailPrice.text = it.price.toString()
+                txtDetailYear.text = it.year.toString()
+                txtDetailPage.text = it.pages.toString()
+                txtDetailLanguage.text = it.language
+                txtDetailLink.text = it.link
+                txtDetailAutor.text = it.author
+                Picasso.get().load(it.imageLink).into(imageDetailImage)
+            }
+            fun email() {
+
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("ventas@anchoBook.cl"))
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Consulta por Libro ${it.title} , ID : ${it.id} ")
+                intent.putExtra(
+                    Intent.EXTRA_TEXT, " “Hola\n" +
+                        "Vi el Libro ${it.title} y me gustaría que me contactaran a este correo o al\n" +
+                        "siguiente número _________")
+                intent.type = "message/rfc822"
+                startActivity(Intent.createChooser(intent, "Choose an email client"))
+            }
+
+            fab.setOnClickListener { view ->
+                Snackbar.make(view, "Email", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show()
+                email()
+            }
+
+
+
+
+
+
+
+        })
+
+
     }
 
 }

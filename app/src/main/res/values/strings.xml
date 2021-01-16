@@ -7,14 +7,20 @@
     <string name="Image">Imagen Producto</string>
     <string name="languaje">Idioma</string>
     <string name="title">Titulo</string>
-    
-    
-    
-    <string name="name">Nombre Producto</string>
+    <string name="link">link</string>
+    <string name="pages">Numero de paginas</string>
+    <string name="year">Año de publicacion</string>
     <string name="price">Precio</string>
-    <string name="Descript">Descripcion</string>
-    <string name="lasprice">Precio Oferta</string>
-
+    <string name="lastprice">Precio Oferta</string>
+    <string name="delivery">delivery</string>
     <string name="Botton">Boton flotante</string>
+
+    <string name="Año">Año : </string>
+    <string name="pagina">Cantidad de Paginas</string>
+    <string name="lenguaje">Idioma : </string>
+    <string name="pais">Pais : </string>
+
+
+
 </resources>
 

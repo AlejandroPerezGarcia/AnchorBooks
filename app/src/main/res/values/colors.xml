@@ -10,4 +10,6 @@
     <color name="dark_primary_color">#388E3C</color>
     <color name="accent_Color">#FFC107</color>
 
+    <color name="accent_color">#FF5252</color>
+
 </resources>
