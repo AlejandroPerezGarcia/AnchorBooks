@@ -20,7 +20,7 @@ private const val ARG_PARAM2 = "param2"
 class ListFragment : Fragment() {
 
     private var bookList = ArrayList<Books>()
-    private lateinit var adapter:AdapterBook
+    private lateinit var adapter: AdapterBook
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -58,36 +58,23 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = AdapterBook(bookList)
-        listRecyclerView.adapter =  adapter
-        val bookViewModel : BookViewModel by activityViewModels()
+        listRecyclerView.adapter = adapter
+        val bookViewModel: BookViewModel by activityViewModels()
 
-        bookViewModel.listBook.observe(viewLifecycleOwner,{
+        bookViewModel.listBook.observe(viewLifecycleOwner, {
             Log.d("frament", "$it")
             adapter.updateBook(it)
-
         })
 
-
-        adapter.bookSelect.observe(viewLifecycleOwner,{
+        adapter.bookSelect.observe(viewLifecycleOwner, {
 
             Log.d("lifeCyclearowner", "selecionado $it")
 
             bookViewModel.selecionado(it)
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragments,DetailFragment.newInstance("",""),"detail")
+                .replace(R.id.fragments, DetailFragment.newInstance("", ""), "detail")
                 .addToBackStack("detail")
                 .commit()
-
-
-
         })
-
-
-
-
     }
-
-
-
-
 }

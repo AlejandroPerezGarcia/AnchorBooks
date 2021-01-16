@@ -9,7 +9,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragments, ListFragment.newInstance("", ""), "lista")
@@ -17,6 +16,5 @@ class MainActivity : AppCompatActivity() {
         } else {
             supportFragmentManager.findFragmentByTag("lista")
         }
-
     }
 }

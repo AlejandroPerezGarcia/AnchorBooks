@@ -22,9 +22,9 @@ private const val ARG_PARAM2 = "param2"
 
 class DetailFragment : Fragment() {
 
-    private val bookViewModel : BookViewModel by activityViewModels()
+    private val bookViewModel: BookViewModel by activityViewModels()
 
-    lateinit var book : EntityBookDetail
+    lateinit var book: EntityBookDetail
 
     private var param1: String? = null
     private var param2: String? = null
@@ -60,7 +60,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bookViewModel.result.observe(viewLifecycleOwner,{
+        bookViewModel.result.observe(viewLifecycleOwner, {
 
             if (it != null) {
                 txtTitleBook.text = it.title
@@ -77,11 +77,15 @@ class DetailFragment : Fragment() {
 
                 val intent = Intent(Intent.ACTION_SEND)
                 intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("ventas@anchoBook.cl"))
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Consulta por Libro ${it.title} , ID : ${it.id} ")
+                intent.putExtra(
+                    Intent.EXTRA_SUBJECT,
+                    "Consulta por Libro ${it.title} , ID : ${it.id} "
+                )
                 intent.putExtra(
                     Intent.EXTRA_TEXT, " “Hola\n" +
-                        "Vi el Libro ${it.title} y me gustaría que me contactaran a este correo o al\n" +
-                        "siguiente número _________")
+                            "Vi el Libro ${it.title} y me gustaría que me contactaran a este correo o al\n" +
+                            "siguiente número _________"
+                )
                 intent.type = "message/rfc822"
                 startActivity(Intent.createChooser(intent, "Choose an email client"))
             }
@@ -92,16 +96,6 @@ class DetailFragment : Fragment() {
                     .show()
                 email()
             }
-
-
-
-
-
-
-
         })
-
-
     }
-
 }
